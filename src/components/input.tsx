@@ -10,7 +10,7 @@ export const Input = ({ text, value, onChange }: InputProps) => {
   const lowercasedText = text.toLowerCase();
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       <label htmlFor={lowercasedText} className="text-md font-medium">
         {text}
       </label>

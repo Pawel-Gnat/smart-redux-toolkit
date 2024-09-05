@@ -1,9 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from '../redux/user-slice';
 import { ChangeEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setFilter } from '../redux/user-slice';
 import { AppDispatch, RootState } from '../redux/store';
-import { Input } from './input';
+
 import { capitalizeFirstLetter } from '../helpers';
+
+import { Input } from './input';
 
 export const UsersFilters = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -20,7 +23,7 @@ export const UsersFilters = () => {
       {Object.keys(filters).map((key) => (
         <Input
           text={capitalizeFirstLetter(key)}
-          value={key}
+          value={filters[key as keyof typeof filters]}
           onChange={handleFilterChange}
         />
       ))}

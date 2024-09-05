@@ -20,22 +20,26 @@ export const UsersTable = () => {
   if (status === 'failed') return <p>Error: {error}</p>;
 
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full border-separate rounded-lg border border-gray-300 text-left">
+    <div className="overflow-hidden overflow-x-auto rounded-lg border border-gray-300">
+      <table className="w-full border-separate border-spacing-0 text-left">
         <thead>
           <tr>
             {Object.keys(filters).map((key) => (
-              <th className="p-2">{capitalizeFirstLetter(key)}</th>
+              <th className="border-b border-gray-300 p-2">
+                {capitalizeFirstLetter(key)}
+              </th>
             ))}
           </tr>
         </thead>
         <tbody>
           {filteredUsers.map((user) => (
             <tr key={user.id}>
-              <td className="p-2">{user.name}</td>
-              <td className="p-2">{user.username}</td>
-              <td className="p-2">{user.email}</td>
-              <td className="p-2">{user.phone}</td>
+              <td className="border-r border-t border-gray-300 p-2">{user.name}</td>
+              <td className="border-t border-gray-300 p-2">{user.username}</td>
+              <td className="border-l border-r border-t border-gray-300 p-2">
+                {user.email}
+              </td>
+              <td className="border-t border-gray-300 p-2">{user.phone}</td>
             </tr>
           ))}
         </tbody>

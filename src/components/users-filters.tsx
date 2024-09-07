@@ -19,7 +19,7 @@ export const UsersFilters = () => {
   };
 
   return (
-    <div className="my-8 grid grid-cols-2 gap-4">
+    <div className="mb-8 mt-4 grid gap-2 sm:my-8 sm:grid-cols-2 sm:gap-4">
       {Object.keys(filters).map((key) => (
         <Input
           key={key}

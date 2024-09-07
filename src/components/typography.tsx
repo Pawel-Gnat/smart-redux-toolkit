@@ -1,5 +1,5 @@
 export const HeadingH1 = ({ text }: { text: string }) => {
-  return <h1 className="p-8 text-3xl">{text}</h1>;
+  return <h1 className="p-4 text-3xl">{text}</h1>;
 };
 
 export const FetchStatusText = ({ text }: { text: string }) => {

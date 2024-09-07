@@ -9,7 +9,7 @@ import { HeadingH1 } from './components/typography';
 function App() {
   return (
     <Provider store={store}>
-      <main className="container mx-auto px-4">
+      <main className="container mx-auto p-4">
         <HeadingH1 text="Users List" />
         <UsersFilters />
         <UsersTable />

@@ -22,6 +22,7 @@ export const UsersFilters = () => {
     <div className="my-8 grid grid-cols-2 gap-4">
       {Object.keys(filters).map((key) => (
         <Input
+          key={key}
           text={capitalizeFirstLetter(key)}
           value={filters[key as keyof typeof filters]}
           onChange={handleFilterChange}

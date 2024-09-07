@@ -1,9 +1,4 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  PayloadAction,
-  SerializedError,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { API_URL } from '../api';
 
@@ -99,8 +94,8 @@ const userSlice = createSlice({
       )
       .addCase(fetchUsers.rejected, (state, action) => {
         state.status = 'failed';
-        state.error =
-          (action.error as SerializedError).message || 'Failed to fetch users';
+        state.error = (action.payload as string) || 'Failed to fetch users';
+        console.log(action);
       });
   },
 });

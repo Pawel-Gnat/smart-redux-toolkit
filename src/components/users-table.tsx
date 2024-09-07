@@ -6,6 +6,8 @@ import { AppDispatch, RootState } from '../redux/store';
 
 import { capitalizeFirstLetter } from '../helpers';
 
+import { FetchStatusText } from './typography';
+
 export const UsersTable = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { filteredUsers, status, error, filters } = useSelector(
@@ -16,8 +18,8 @@ export const UsersTable = () => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  if (status === 'loading') return <p>Loading...</p>;
-  if (status === 'failed') return <p>Error: {error}</p>;
+  if (status === 'loading') return <FetchStatusText text="Loading..." />;
+  if (status === 'failed') return <FetchStatusText text={`Error: ${error}`} />;
 
   return (
     <div className="overflow-hidden overflow-x-auto rounded-lg border border-gray-300">
@@ -25,21 +27,34 @@ export const UsersTable = () => {
         <thead>
           <tr>
             {Object.keys(filters).map((key) => (
-              <th className="border-b border-gray-300 p-2">
+              <th
+                key={key}
+                className="border-b border-r border-gray-300 p-2 last:border-r-0"
+              >
                 {capitalizeFirstLetter(key)}
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
+          {filteredUsers.length === 0 && (
+            <tr>
+              <td colSpan={Object.keys(filters).length} className="p-4 text-center">
+                No users found
+              </td>
+            </tr>
+          )}
+
           {filteredUsers.map((user) => (
             <tr key={user.id}>
-              <td className="border-r border-t border-gray-300 p-2">{user.name}</td>
-              <td className="border-t border-gray-300 p-2">{user.username}</td>
-              <td className="border-l border-r border-t border-gray-300 p-2">
-                {user.email}
-              </td>
-              <td className="border-t border-gray-300 p-2">{user.phone}</td>
+              {Object.keys(filters).map((key) => (
+                <td
+                  key={key}
+                  className="border-r border-t border-gray-300 p-2 last:border-r-0"
+                >
+                  {user[key as keyof typeof filters]}
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>

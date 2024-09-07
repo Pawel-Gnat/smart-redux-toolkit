@@ -17,6 +17,7 @@ export const Input = ({ text, value, onChange }: InputProps) => {
       <input
         id={lowercasedText}
         type="text"
+        name={lowercasedText}
         placeholder={`Filter by ${lowercasedText}`}
         value={value}
         onChange={onChange}
